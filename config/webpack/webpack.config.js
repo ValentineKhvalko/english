@@ -21,6 +21,7 @@ module.exports = {
     alias: {
       '@app': pathResolve('src'),
       '@config': pathResolve('config'),
+      '@assets': pathResolve('assets'),
     },
   },
   devtool: isProduction ? undefined : 'inline-source-map',
