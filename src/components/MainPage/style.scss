@@ -1,0 +1,25 @@
+.main-link {
+    text-align: center;
+    margin: 20px 10px;
+    width: 300px;
+    height: 240px;
+    border: 1px solid black;
+    text-decoration: none; 
+    font-size: 1.5em;
+    color: black;
+    background: linear-gradient(180deg,#18d9f3,#617aec 50%,#fff 0,#fff);
+    border-radius: 5px;
+
+    .main-img {
+        width: 140px;
+        height: 140px;
+        border: solid white 10px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 20px auto;
+    }
+}
+
+
+
+

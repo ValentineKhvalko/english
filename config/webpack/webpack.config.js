@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const { scssLoader, jsLoader, imageLoader } = require('./loaders');
+const { scssLoader, jsLoader, imageLoader, audioLoader } = require('./loaders');
 
 const isProduction = process.env.NODE_ENV === 'production';
 const rootPath = process.cwd();
@@ -33,10 +33,12 @@ module.exports = {
       open: true,
     },
   module: {
-    rules: [jsLoader, scssLoader, imageLoader]
+    rules: [jsLoader, scssLoader, imageLoader, audioLoader]
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+      template: 'src/template/index.html'
+    })
   ]
 };
