@@ -2,6 +2,7 @@ import Sidebar from '@app/components/Sidebar';
 import Router from '@app/components/Router';
 import cards, { titleCards } from '@app/models/cards';
 import MainPage from '@app/components/MainPage';
+import Mode from '@app/components/Mode';
 import ActionCardPage from '@app/components/ActionCardPage';
 import '@app/styles/index.scss';
 
@@ -25,6 +26,8 @@ const actionCardPage = new ActionCardPage({
     cards
 });
 
+const mode = new Mode (document.querySelector(".mode")); 
+
 const router = new Router([
     { 
         path: '/',
@@ -37,6 +40,10 @@ const router = new Router([
     },
 ]);
 
+window.onpopstate = function() {
+    router.navigate(window.history.state.location, true);
+}
+
 const navigateByLink = ({ title, href }) => {
     if(href === '/cards') {
         actionCardPage.setTitle(title);
@@ -44,12 +51,19 @@ const navigateByLink = ({ title, href }) => {
     router.navigate(href);
 };
 
+const selectMode = function (nextMode) {
+    if(nextMode === 'train') {
+        document.querySelector('#app').classList.add('train-mode');
+        document.querySelector('.mode').innerHTML = '<p>TRAIN</p>';
+    } else if(nextMode === 'play'){
+        document.querySelector('#app').classList.remove('train-mode');
+        document.querySelector('.mode').innerHTML = '<p>PLAY</p>';
+    }
+}
+
+mode.selectLinkObserver.subscribe(selectMode)
 mainPage.selectLinkObserver.subscribe(navigateByLink);
 sidebar.selectLinkObserver.subscribe(navigateByLink);
-
-window.onpopstate = (data) => {
-    console.log(data)
-}
 
 document.querySelector('.openbtn').addEventListener('click', sidebar.show.bind(sidebar));
 document.querySelector('.closebtn').addEventListener('click', sidebar.hide.bind(sidebar));

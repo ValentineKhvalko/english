@@ -1,13 +1,12 @@
-#sidebar {
+.sidebar {
     position: fixed;
     left: -320px;
     height: 100%;
-    background: linear-gradient(90deg,#18d9f3,#617aec, 100%,#fff 0,#fff);
     width: 320px;
-    // display: none;
     transition: 0.5s;
     transform: translateX(0px);
     z-index: 9999;
+    background: linear-gradient(40deg,#ad1d29,#f15f3b);
     .nav {
         font-size: 2em;
         padding: 80px 0 0 40px;
@@ -23,3 +22,4 @@
         }
     }    
 }
+   

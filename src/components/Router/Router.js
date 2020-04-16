@@ -5,12 +5,13 @@ class Router {
         this.currentRoute.component.mount();
     }
 
-    navigate(path) {
+    navigate(path, syncRoutes = false) {
         this.currentRoute.component.unmount();
         this.currentRoute = this.routes.find((route) => route.path === path);
-        
         this.currentRoute.component.mount();
-        history.pushState({ location: path }, null, path);
+        if (!syncRoutes) {
+            history.pushState({ location: path }, null, path);
+        }
     }
 }
 

@@ -13,9 +13,16 @@ class ActionCardPage {
 
   mount () {
     const cardsPage = this.cards[this.title];
+    const cardPageBlock = document.createElement('div');
+    cardPageBlock.classList.add('cardPageBlock');
     cardsPage.forEach((card) => {
-      new Card(card, this.element).blockRendering();
-    })
+      new Card(card, cardPageBlock).blockRendering();
+    });
+    const startGame = document.createElement('div');
+    startGame.classList.add('startGame');
+    startGame.innerHTML = 'Start';
+    this.element.append(cardPageBlock);
+    this.element.append(startGame);
   } 
 
   unmount() {

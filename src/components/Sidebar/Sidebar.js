@@ -14,7 +14,7 @@ class Sidebar {
     }
 
     show(event) {
-        document.querySelector('#sidebar').style.transform  = 'translateX(320px)';
+        document.querySelector('.sidebar').style.transform  = 'translateX(320px)';
         this.state.view = 'visible';
         event.stopPropagation();
         hideSidebar = () => {
@@ -24,7 +24,7 @@ class Sidebar {
     }
 
     hide() {
-        document.querySelector('#sidebar').style.transform  = 'translateX(0px)';
+        document.querySelector('.sidebar').style.transform  = 'translateX(0px)';
         this.state.view = 'hide';
         document.removeEventListener('click', hideSidebar);
     }
@@ -32,7 +32,7 @@ class Sidebar {
     mount() {
         this.state.list.forEach(({ title, href }) => {
             const titleBlock = document.createElement('li');
-            titleBlock.innerHTML = `<a href='#'>${title}<a>`;
+            titleBlock.innerHTML = `<a>${title}<a>`;
             titleBlock.addEventListener('click', (() => {
                 this.selectLink({ title, href });
         }));
