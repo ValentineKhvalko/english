@@ -6,10 +6,6 @@
   font-family: 'Cabin', sans-serif;
 }
 
-body {
-  background: $main_background;
-}
-
 a {
   text-decoration: none;
   cursor: pointer;
@@ -18,7 +14,7 @@ a {
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 30px 90px;
+  padding: 30px 90px 5px;
 }
 
 .openbtn {
@@ -32,6 +28,24 @@ a {
   right: 30px;
   font-size: 52px;
   color: #fff;
+}
+
+.starsBlock {
+  height: 50px;
+  overflow: hidden;
+  display: flex;
+  margin: 0px 90px;
+  img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.success, .failure {
+  font-size: 48px;
+  text-align: center;
+  color: rgb(250, 205, 56);
+  padding-top: 70px;
 }
 
 .mode {
@@ -98,6 +112,7 @@ a {
       height: 0;
     }
   }
+
   .startGame {
     display: none;
   }
@@ -126,6 +141,19 @@ a {
   display: block;
 }
 
+.repeat {
+  margin: 30px auto;
+  width: 100px;
+  padding: 20px 100px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  font-size: 32px;
+  background: linear-gradient(180deg,#ad1d29,#f15f3b, 100%,#fff 0,#fff);
+  display: block;
+}
+
 @media (max-width: 500px) {
 
   .header {
@@ -133,6 +161,20 @@ a {
   }
 
   .cardPageBlock, .main {
-    padding: 0 30px;
+    padding: 0;
+  }
+  
+  .starsBlock {
+    margin: 0 30px;
+  };
+
+  .startGame {
+    padding: 20px 50px;
+  }
+
+  .success, .failure {
+    img {
+      width: 200px;
+    }
   }
 }

@@ -1,7 +1,9 @@
 import './style.scss';
 
 class Card {
-  constructor(card, parentElem) {
+  constructor(card, parentElem, onClick) {
+    // this.onClick = onClick;
+    this.card = card;
     this.imageURL = card.image;
     this.word = card.word;
     this.audio = card.audioSrc;
@@ -12,6 +14,7 @@ class Card {
   blockRendering() {
     //Create Elements
     const mainCard = document.createElement('div');
+    // mainCard.addEventListener('click', () => this.onClick());
     mainCard.classList.add('main-card');
     const front = document.createElement('div');
     front.classList.add('front');
@@ -23,6 +26,7 @@ class Card {
     const playImg = document.createElement('img');
     playImg.src = require(`@assets/${this.imageURL}`).default;
     playImg.classList.add('playImg');
+    playImg.setAttribute('card-word', this.word);
     const backImage = document.createElement('img');
     backImage.src = require(`@assets/${this.imageURL}`).default;
     backImage.classList.add('cardImage');
@@ -49,8 +53,6 @@ class Card {
     mainCard.append(front);
     mainCard.append(back);
     this.parentElem.append(mainCard);
-
-    const play = 'hui';
 
     image.addEventListener('click', this.play.bind(this));
 

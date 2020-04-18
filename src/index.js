@@ -2,9 +2,13 @@ import Sidebar from '@app/components/Sidebar';
 import Router from '@app/components/Router';
 import cards, { titleCards } from '@app/models/cards';
 import MainPage from '@app/components/MainPage';
-import Mode from '@app/components/Mode';
+import Mode, { defaultMode } from '@app/components/Mode';
+import StartGameButton from '@app/components/StartGameButton';
 import ActionCardPage from '@app/components/ActionCardPage';
 import '@app/styles/index.scss';
+
+
+const appContainerElement = document.querySelector('#app');
 
 const sidebar = new Sidebar({
     element: document.querySelector('.nav'),
@@ -26,7 +30,7 @@ const actionCardPage = new ActionCardPage({
     cards
 });
 
-const mode = new Mode (document.querySelector(".mode")); 
+const mode = new Mode(document.querySelector('.mode')); 
 
 const router = new Router([
     { 
@@ -47,16 +51,17 @@ window.onpopstate = function() {
 const navigateByLink = ({ title, href }) => {
     if(href === '/cards') {
         actionCardPage.setTitle(title);
+        actionCardPage.setState('endGame');
     }
     router.navigate(href);
 };
 
 const selectMode = function (nextMode) {
     if(nextMode === 'train') {
-        document.querySelector('#app').classList.add('train-mode');
+        appContainerElement.classList.add('train-mode');
         document.querySelector('.mode').innerHTML = '<p>TRAIN</p>';
     } else if(nextMode === 'play'){
-        document.querySelector('#app').classList.remove('train-mode');
+        appContainerElement.classList.remove('train-mode');
         document.querySelector('.mode').innerHTML = '<p>PLAY</p>';
     }
 }
