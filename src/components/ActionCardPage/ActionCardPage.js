@@ -4,7 +4,7 @@ import EventObserver from '@app/EventObserver';
 import Game from '@app/components/Game';
 
 class ActionCardPage {
-  constructor({ element, title, cards}) {
+  constructor({ element, title, cards }) {
     this.title = title;
     this.element = element;
     this.cards = cards;
@@ -13,7 +13,7 @@ class ActionCardPage {
     this.playList = [];
   }
 
-  setTitle (title) {
+  setTitle(title) {
     this.title = title;
   }
 
@@ -21,13 +21,13 @@ class ActionCardPage {
     this.state = state;
   }
 
-  mount () {
+  mount() {
     this.playList = [];
     const cardsPage = this.cards[this.title];
     const cardPageBlock = document.createElement('div');
     cardPageBlock.classList.add('cardPageBlock');
     cardsPage.forEach((card) => {
-      new Card(card, cardPageBlock).blockRendering(); 
+      new Card(card, cardPageBlock).blockRendering();
       this.playList.push(card);
     });
 
@@ -41,34 +41,34 @@ class ActionCardPage {
     repeat.addEventListener('click', () => (game.playAudio()));
     const startGameButton = new StartGameButton(startGame);
     startGameButton.gameObserver.subscribe((playGame) => {
-      if(playGame === 'startGame') {
+      if (playGame === 'startGame') {
         this.setState(playGame);
         startGame.innerHTML = 'Stop Game';
         game.start();
         this.element.append(repeat);
+        startGame.style.display = "none";
       } else {
         this.setState(playGame);
         startGame.innerHTML = 'Start';
         repeat.remove();
       }
     });
-    
+
     cardPageBlock.addEventListener('click', (event) => {
-      if (this.state === 'startGame' && event.target.hasAttribute('card-word')) { 
-      game.checkOptoin(event.target.getAttribute('card-word'));  
+      if (this.state === 'startGame' && event.target.hasAttribute('card-word')) {
+        game.checkOptoin(event.target.getAttribute('card-word'));
       }
-    }); 
+    });
 
     document.querySelector('.starsBlock').innerHTML = '';
     startGame.innerHTML = 'Start';
     this.element.append(cardPageBlock);
     this.element.append(startGame);
-  } 
+  }
 
   unmount() {
     this.element.innerHTML = '';
   }
-
 }
 
-  export default ActionCardPage;
+export default ActionCardPage;

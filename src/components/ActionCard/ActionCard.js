@@ -1,7 +1,7 @@
 import './style.scss';
 
 class Card {
-  constructor(card, parentElem, onClick) {
+  constructor(card, parentElem) {
     // this.onClick = onClick;
     this.card = card;
     this.imageURL = card.image;
@@ -12,13 +12,13 @@ class Card {
   }
 
   blockRendering() {
-    //Create Elements
+    // Create Elements
     const mainCard = document.createElement('div');
     // mainCard.addEventListener('click', () => this.onClick());
     mainCard.classList.add('main-card');
     const front = document.createElement('div');
     front.classList.add('front');
-    const back =document.createElement('div');
+    const back = document.createElement('div');
     back.classList.add('back');
     const image = document.createElement('img');
     image.src = require(`@assets/${this.imageURL}`).default;
@@ -33,9 +33,9 @@ class Card {
     const word = document.createElement('p');
     word.classList.add('word');
     word.classList.add('none');
-    word.innerHTML= `${this.word}`
+    word.innerHTML = `${this.word}`;
     const rotate = document.createElement('img');
-    rotate.src = require(`@assets/img/rotate.png`).default;
+    rotate.src = require('@assets/img/rotate.png').default;
     rotate.classList.add('rotate');
     rotate.classList.add('none');
     const translation = document.createElement('p');
@@ -43,7 +43,7 @@ class Card {
     translation.classList.add('none');
     translation.innerHTML = `${this.translation}`;
 
-    //Append elems in DOM 
+    // Append elems in DOM
     front.append(image);
     front.append(playImg);
     front.append(word);
@@ -56,26 +56,18 @@ class Card {
 
     image.addEventListener('click', this.play.bind(this));
 
-    rotate.addEventListener('click', function() {
+    rotate.addEventListener('click', () => {
       mainCard.style.transform = 'rotateY(180deg)';
     });
 
-    back.addEventListener('mouseleave', function(){
+    back.addEventListener('mouseleave', () => {
       mainCard.style.transform = 'rotateY(0deg)';
     });
-
   }
 
-  play () { 
+  play() {
     new Audio(require(`@assets/${this.audio}`).default).play(); return false;
   }
-
-  choosedMode () {
-    if(mode === 'train') {
-      this.parentElem.classList.add('train-mod');
-    }
-  }
-
 }
 
 export default Card;

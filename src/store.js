@@ -1,6 +1,6 @@
 const store = {
   sidebar: {
-    view: 'hidden' //  visible | hidden
+    view: 'hidden', //  visible | hidden
   },
   mode: 'train', // train | play
   location: '/', // cards/:type | / -> main page
